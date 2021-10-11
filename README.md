@@ -1,2 +1,2 @@
 # VAE
-VAE
+Variational Autoencoder Implementation
