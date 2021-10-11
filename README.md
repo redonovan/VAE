@@ -11,7 +11,7 @@ The generated digit image using kl_wt=1e-3 looks like this :
 
 ![generated digits picture](digits1e-3.png)
 
-The Kullback Leibler loss term acts to encourage the posterior distribution q(z|x) to look like the prior p(z) = N(0,I).  I was interested to see what the posterior distributions actually looked like both during training and at the end of training under various different kl_wt hyperparameters.  I therefore modified my code to return encoded posterior distribution parameters during training so they could be plotted.  For clarity I restricted my plots to the 1st training example per batch over a single epoch, resulting in 468 examples per plot.  I used a rainbow colourmap to indicate batch number, with red at the start of the epoch, through orange, yellow, green, blue, and indigo, to violet at the end of the epoch.  I plotted a 1 standard deviation ellipse for every q(z|x) normal distribution in latent space, plus a black circle to represent the prior N(0,I).
+The Kullback Leibler loss term acts to encourage the posterior distribution q(z|x) to look like the prior p(z) = N(0,I).  I was interested to see what the posterior distributions actually looked like both during training and at the end of training under various different kl_wt hyperparameter values.  I therefore modified my code to return encoded posterior distribution parameters during training so they could be plotted.  For clarity I restricted my plots to the 1st training example per batch over a single epoch, resulting in 469 examples per plot.  I used a rainbow colourmap to indicate batch number, with red at the start of the epoch, through orange, yellow, green, blue, and indigo, to violet at the end of the epoch.  I plotted a 1 standard deviation ellipse for every q(z|x) normal distribution in latent space, plus a black circle to represent the prior N(0,I).
 
 The posterior distributions over the 1st training epoch using kl_wt=1e-3 look like this:
 
@@ -21,9 +21,27 @@ As we can see, posterior distributions start mostly a long way from the origin (
 
 ![posterior distribution picture](posterior1e-3_100.png)
 
+Increasing kl_wt by a factor of 10 to 1e-2 we find the generated digit image contains slightly fewer digits which are perhaps slightly fuzzier on average than those above:
 
+![generated digits picture](digits1e-2.png)
 
+The posterior distributions over the 1st training epoch can be seen to march much more convincingly towards the origin in latent space, with variances remaining relatively large compared to those seen above:
 
+![posterior distribution picture](posterior1e-2.png)
 
+After 100 epochs we see that the stronger kl_wt has caused virtually all posterior means to lie within 2.5 standard deviations of the origin.  Posterior variances are still smaller than the prior variance, but not as small as when kl_wt was 1e-3:
 
+![posterior distribution picture](posterior1e-2_100.png)
+
+These posteriors are consistent with the generated digit image : larger variances are consistent with each digit encoding into a larger region of latent space than before (hence fewer digits in the image) and overlapping more with its neigbours (hence fuzziness).
+
+Increasing kl_wt by another factor of 10 to 1e-1 we find that the posterior distributions become very similar to the prior, both in mean and in variance, after just one epoch of training:
+
+![posterior distribution picture](posterior1e-1.png)
+
+The posteriors are now so similar not only to the prior but also to each other that the VAE cannot effectively encode different digits into different regions of latent space and cannot decode different latent samples into different digits.  As a result, even after 100 epochs of training, all decoded latent samples look essentially the same :
+
+![generated digits picture](digits1e-1.png)
+
+TensorBoard training curves for the 3 cases given here are in <a href=TensorBoard1e-3.png>TensorBoard1e-3.png</a>, <a href=TensorBoard1e-2.png>TensorBoard1e-2.png</a> and <a href=TensorBoard1e-1.png>TensorBoard1e-1.png</a>.
 
