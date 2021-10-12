@@ -29,11 +29,11 @@ tf.random.set_seed(1)
 lat_dim      = 2        # latent dimension, in principle free choice but in practice fixed by plotting code
 hid_dim      = 500      # free choice, hidden dimension
 kl_wt        = 1e-3     # free choice, weight given to the Kullback Leibler loss term
+l2_wt        = 0        # free choice, L2 regularization weight
 # training
 batch_size   = 128      # free choice, limited by GPU memory, Kingma & Welling used 100
 num_epochs   = 100      # free choice, number of training epochs
 ann_epochs   = 0        # free choice, number of Kullback Leibler annealing epochs
-l2_wt        = 0        # free choice, L2 regularization weight
 
 
 # Data
