@@ -1,7 +1,5 @@
-# VAE
-Variational Auto-Encoder Implementation
-
-under construction...
+# Variational Auto-Encoder
+<B>Implementation</B>
 
 This code began life as a tutorial in Francois Chollet's book <a href=https://www.amazon.co.uk/Deep-Learning-Python-Francois-Chollet/dp/1617294438/>Deep Learning with Python, 2018</a>.  I modified that code to follow <a href=https://arxiv.org/abs/1312.6114>Kingma and Welling, 2013</a>, replacing Chollet's convolutional networks with the original dense networks.  I then converted the code from using the Keras Functional API to use class-based custom-layers.  I then introduced Kullback Leibler annealing as described in <a href=https://arxiv.org/abs/1804.02135>Akuzawa, et al, 2018</a> (originally in <a href=https://arxiv.org/abs/1511.06349>Bowman, et al, 2016</a>), and L2 weight regularization as used by Kingma and Welling.  Finally, I modified the code to return posterior distribution parameters to a custom training loop so I could plot posterior distributions as the model trained.  I think my code is now sufficiently different from Chollet's tutorial that I can post it here in <a href=vae.py>vae.py</a>.
 
